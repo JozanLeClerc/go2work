@@ -48,17 +48,25 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
-	// "log"
+	"log"
 	"os/exec"
 )
 
-func exec_player(args ...string) {
+func exec_player(show_fortune bool, args ...string) {
+	var cmd *exec.Cmd
+	if show_fortune == true {
+		cmd = exec.Command("fortune", "-s")
+		var out bytes.Buffer
+		cmd.Stdout = &out
+		cmd.Run()
+		fmt.Println(out.String())
+	}
 	fmt.Println("Playing: " + args[len(args) - 1])
-	cmd := exec.Command(args)
-	// cmd := exec.Command("mpv", file)
-	// err := cmd.Run();
-	// if err != nil {
-		// log.Fatal(err)
-	// }
+	cmd = exec.Command(args[0], append(args[1:])...)
+	err := cmd.Run();
+	if err != nil {
+		log.Fatal(err)
+	}
 }
