@@ -57,11 +57,19 @@ func main() {
 	ticker := time.NewTicker(2 * time.Second)
 	quit := make(chan struct{})
 	fmt.Println("Time is: " + t)
-	exec_player(true, "mpv", "--no-video", "/home/jozan/mu/rock/grunge/nirvana/1993_in_utero/04_rape_me.flac")
+	exec_player(
+		true,
+		"mpv",
+		"--no-video",
+		"/home/jozan/mu/rock/grunge/nirvana/1993_in_utero/04_rape_me.flac")
 	for {
 		select {
 		case <- ticker.C:
-			exec_player(false, "mpv", "--no-video", "/home/jozan/mu/rock/grunge/nirvana/1993_in_utero/04_rape_me.flac")
+			exec_player(
+				false,
+				"mpv",
+				"--no-video",
+				"/home/jozan/mu/rock/grunge/nirvana/1993_in_utero/04_rape_me.flac")
 		case <- quit:
 			ticker.Stop()
 			return
