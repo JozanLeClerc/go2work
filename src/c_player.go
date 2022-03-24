@@ -49,15 +49,16 @@ package main
 
 import (
 	"fmt"
-	"log"
+	// "log"
 	"os/exec"
 )
 
-func exec_player(file string) {
-	fmt.Println("Playing: " + file)
-	cmd := exec.Command("mpv", "--really-quiet", file)
-	err := cmd.Run();
-	if err != nil {
-		log.Fatal(err)
-	}
+func exec_player(args ...string) {
+	fmt.Println("Playing: " + args[len(args) - 1])
+	cmd := exec.Command(args)
+	// cmd := exec.Command("mpv", file)
+	// err := cmd.Run();
+	// if err != nil {
+		// log.Fatal(err)
+	// }
 }

@@ -54,13 +54,14 @@ import (
 
 func main() {
 	t := get_time()
-	ticker := time.NewTicker(1 * time.Second)
+	ticker := time.NewTicker(2 * time.Second)
 	quit := make(chan struct{})
 	fmt.Println("Time is: " + t)
+	exec_player("mpv", "/home/jozan/mu/rock/grunge/nirvana/1993_in_utero/04_rape_me.flac")
 	for {
 		select {
 		case <- ticker.C:
-			exec_player("/home/jozan/mu/rock/grunge/nirvana/1993_in_utero/04_rape_me.flac")
+			exec_player("mpv", "/home/jozan/mu/rock/grunge/nirvana/1993_in_utero/04_rape_me.flac")
 		case <- quit:
 			ticker.Stop()
 			return
