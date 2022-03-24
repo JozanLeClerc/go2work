@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/c_player.go
- * Thu Mar 24 15:12:23 CET 2022
+ * Thu Mar 24 16:17:10 CET 2022
  * Joe
  *
  * Simple func that plays the file
