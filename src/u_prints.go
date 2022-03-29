@@ -66,7 +66,7 @@ func print_time_left(curr_t [3]byte, dest_t [3]byte) {
 	}
 	left_t := seconds_to_time(left_secs)
 	if left_secs < 60 {
-		fmt.Print("\r                         ")
+		fmt.Print("\r                          ")
 		fmt.Print(
 			"\r",
 			left_t[SECS], "s",
