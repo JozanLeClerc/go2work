@@ -38,85 +38,15 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * go2work: src/c_go2work.go
- * Tue Mar 29 22:14:51 CEST 2022
+ * go2work: src/u_utils.go
+ * Tue Mar 29 22:15:50 CEST 2022
  * Joe
- *
- * The main.
  */
 
 package main
 
-import (
-	"log"
-	"os"
-	"time"
-	"strconv"
-	"strings"
-)
-
-const (
-	PROGNAME	= "go2work"
-	VERSION		= "0.1.0"
-	HOURS		= 0
-	MINS		= 1
-	SECS		= 2
-)
-
-func main() {
-	var dest_t [2]int
-	log.SetPrefix(PROGNAME + ": ")
-	log.SetFlags(0)
-	if len(os.Args[0:]) == 1 {
-		log.Fatal("No arguments")
-		return
-	}
-	switch os.Args[1] {
-	case "-h":
-		print_help()
-		return
-	case "-H":
-		print_real_help()
-		return
-	case "-v":
-		print_version()
-		return
-	}
-	curr_t := get_time()
-	str_dest_t := strings.Split(os.Args[1], ":")
-	dest_t[HOURS], _ = strconv.Atoi(str_dest_t[HOURS])
-	dest_t[MINS],  _ = strconv.Atoi(str_dest_t[MINS])
-	// dest_t = [2]int{0, 0}
-	ticker := time.NewTicker(1 * time.Second)
-	quit := make(chan struct{})
-	for {
-		select {
-		case <- ticker.C:
-			curr_t = get_time()
-			// print_time(curr_t)
-			print_time_left(curr_t, dest_t)
-			if curr_t[HOURS] == dest_t[HOURS] && curr_t[MINS] == dest_t[MINS] {
-				exec_player(
-					true,
-					"mpv",
-					"--no-video",
-					"/usr/home/jozan/mu/progressive/progressive_black_metal/deathspell_omega/2010_paracletus/02_wings_of_predation.flac",
-				)
-				return
-			}
-		case <- quit:
-			ticker.Stop()
-			return
-		}
-	}
+func time_to_seconds(time [3]int) int {
 }
 
-func get_time() [3]int {
-	var curr_t [3]int
-	now := time.Now()
-	t := strings.Split(now.Format("15:04:05"), ":")
-	curr_t[HOURS], _ = strconv.Atoi(t[HOURS])
-	curr_t[MINS], _ = strconv.Atoi(t[MINS])
-	curr_t[SECS], _ = strconv.Atoi(t[SECS])
-	return curr_t
+func seconds_to_time(seconds int) [3]int {
 }

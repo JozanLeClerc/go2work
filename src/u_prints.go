@@ -38,8 +38,8 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * go2work: src/c_prints.go
- * Tue Mar 29 21:03:26 CEST 2022
+ * go2work: src/u_prints.go
+ * Tue Mar 29 22:15:02 CEST 2022
  * Joe
  *
  * Stuff to print
@@ -49,7 +49,27 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 )
+
+func print_time(t []string) {
+	fmt.Print("\rTime is: ", t[HOURS], ":", t[MINS], ":", t[SECS])
+}
+
+func print_time_left(curr_t []int, dest_t []int) {
+	var left_t [2]int
+	left_t = int{0, 0}
+	h, _ := strconv.Atoi(curr)
+	m
+	s, _ := strconv.Atoi(curr_t[SECS])
+	s = 60 - s
+	fmt.Print(
+		"\rTime left to sleep: ",
+		left_t[HOURS], "h ",
+		left_t[MINS], "m ",
+		s, "s",
+	)
+}
 
 func print_help() {
 	fmt.Println("help")
@@ -61,11 +81,4 @@ func print_real_help() {
 
 func print_version() {
 	fmt.Println(PROGNAME, VERSION)
-}
-
-func print_time(t []string) {
-	fmt.Print("\rTime is: ", t[HOURS], ":", t[MINS], ":", t[SECS])
-}
-
-func print_left_to_sleep(curr_t []string, dest_t []string) {
 }
