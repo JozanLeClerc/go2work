@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/c_go2work.go
- * Tue Mar 29 20:10:23 CEST 2022
+ * Tue Mar 29 20:55:49 CEST 2022
  * Joe
  *
  * The main.
@@ -56,7 +56,11 @@ import (
 )
 
 const (
-	PROGNAME = "go2work"
+	PROGNAME	= "go2work"
+	VERSION		= "0.1.0"
+	HOURS		= 0
+	MINS		= 1
+	SECS		= 2
 )
 
 func main() {
@@ -66,18 +70,30 @@ func main() {
 		log.Fatal("No arguments")
 		return
 	}
-	curr_h, curr_m := get_time()
-	dest_t := os.Args[1]
-	dest_h := strings.Split(dest_t, ":")
-	fmt.Println("dest_splitted: ", dest_h)
-	ticker := time.NewTicker(5 * time.Second)
+	switch os.Args[1] {
+	case "-h":
+		print_help()
+		return
+	case "-H":
+		print_real_help()
+		return
+	case "-v":
+		print_version()
+		return
+	}
+	curr_t := get_time()
+	dest_t := strings.Split(os.Args[1], ":")
+	ticker := time.NewTicker(1 * time.Second)
 	quit := make(chan struct{})
-	fmt.Println("Time is: " + curr_h + ":" + curr_m)
+	print_time(curr_t)
 	for {
 		select {
 		case <- ticker.C:
-			curr_h, curr_m = get_time()
-			exec_player(false, "mpv", "--no-video", "/home/jozan/mu/rock/grunge/nirvana/1993_in_utero/04_rape_me.flac")
+			curr_t = get_time()
+			print_time(curr_t)
+			if curr_t[HOURS] == dest_t[HOURS] && curr_t[MINS] == dest_t[MINS] {
+				exec_player(true, "mpv", "--no-video", "/usr/home/jozan/mu/progressive/progressive_black_metal/deathspell_omega/2010_paracletus/02_wings_of_predation.flac")
+			}
 		case <- quit:
 			ticker.Stop()
 			return
@@ -85,11 +101,27 @@ func main() {
 	}
 }
 
-func get_time() (string, string) {
-	var h  string
-	var m  string
-	t := time.Now()
-	h  = t.Format("15")
-	m  = t.Format("04")
-	return h, m
+func print_help() {
+	fmt.Println("help")
 }
+
+func print_real_help() {
+	fmt.Println("send help")
+}
+
+func print_version() {
+	fmt.Println(PROGNAME, VERSION)
+}
+
+func print_time(t []string) {
+	fmt.Print("\rTime is: ", t[HOURS], ":", t[MINS], ":", t[SECS])
+}
+
+func get_time() []string {
+	now := time.Now()
+	t := strings.Split(now.Format("15:04:05"), ":")
+	return t
+}
+
+// func left_to_sleep(curr_h) {
+// }
