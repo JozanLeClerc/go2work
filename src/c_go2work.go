@@ -61,6 +61,7 @@ const (
 	HOURS		= 0
 	MINS		= 1
 	SECS		= 2
+	INTERVAL	= 500
 )
 
 func main() {
@@ -74,16 +75,16 @@ func main() {
 		return
 	}
 	switch os.Args[1] {
-	case "-h":
+	case "-h", "--help":
 		print_help()
 		return
-	case "-H":
+	case "-H", "--real-help":
 		print_real_help()
 		return
-	case "-v":
+	case "-v", "--version":
 		print_version()
 		return
-	case "-t":
+	case "-t", "--test":
 		dest_t = get_test_time()
 	default:
 		str_dest_t := strings.Split(os.Args[1], ":")
@@ -95,7 +96,7 @@ func main() {
 	}
 	curr_t = get_time()
 	print_time_left(curr_t, dest_t)
-	ticker := time.NewTicker(500 * time.Millisecond)
+	ticker := time.NewTicker(INTERVAL * time.Millisecond)
 	quit := make(chan struct{})
 	for {
 		select {

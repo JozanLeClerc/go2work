@@ -91,14 +91,14 @@ func print_time_left(curr_t [3]byte, dest_t [3]byte) {
 }
 
 func print_help() {
-	fmt.Println("Usage:
+	fmt.Println(`Usage:
   go2work [option / time]
 
 Options:
-  -h    show this help menu
-  -H    show the real help menu
-  -v    show version of go2work
-  ")
+  -h, --help         show this help menu
+  -H, --real-help    show the real help menu
+  -t, --test         run a test
+  -v, --version      show version of go2work`)
 }
 
 func print_real_help() {
