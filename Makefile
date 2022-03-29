@@ -11,7 +11,7 @@
 # ========================
 #
 # go2work: Makefile
-# Thu Mar 24 15:00:55 CET 2022
+# Tue Mar 29 21:08:26 CEST 2022
 # Joe
 #
 # GNU Makefile
@@ -27,6 +27,7 @@ TRGT_DIR	 = ./
 
 SRCS_NAME	 = c_go2work
 SRCS_NAME	+= c_player
+SRCS_NAME	+= c_prints
 
 SRCS		 = $(addprefix ${SRCS_DIR}, $(addsuffix .go, ${SRCS_NAME}))
 
@@ -46,10 +47,7 @@ clean:
 run:
 	go run ${SRCS}
 
-tools:
-	${MAKE} --no-print-directory -C ${TOOLS_DIR} all
-
-.PHONY:	build run
+.PHONY:	build clean run
 
 # File prefixes info
 # ------------------

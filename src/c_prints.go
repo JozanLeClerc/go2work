@@ -38,70 +38,34 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * go2work: src/c_go2work.go
- * Tue Mar 29 20:55:49 CEST 2022
+ * go2work: src/c_prints.go
+ * Tue Mar 29 21:03:26 CEST 2022
  * Joe
  *
- * The main.
+ * Stuff to print
  */
 
 package main
 
 import (
-	"log"
-	"os"
-	"time"
-	"strings"
+	"fmt"
 )
 
-const (
-	PROGNAME	= "go2work"
-	VERSION		= "0.1.0"
-	HOURS		= 0
-	MINS		= 1
-	SECS		= 2
-)
-
-func main() {
-	log.SetPrefix(PROGNAME + ": ")
-	log.SetFlags(0)
-	if len(os.Args[0:]) == 1 {
-		log.Fatal("No arguments")
-		return
-	}
-	switch os.Args[1] {
-	case "-h":
-		print_help()
-		return
-	case "-H":
-		print_real_help()
-		return
-	case "-v":
-		print_version()
-		return
-	}
-	curr_t := get_time()
-	dest_t := strings.Split(os.Args[1], ":")
-	ticker := time.NewTicker(1 * time.Second)
-	quit := make(chan struct{})
-	print_time(curr_t)
-	for {
-		select {
-		case <- ticker.C:
-			curr_t = get_time()
-			print_time(curr_t)
-			if curr_t[HOURS] == dest_t[HOURS] && curr_t[MINS] == dest_t[MINS] {
-				exec_player(true, "mpv", "--no-video", "/usr/home/jozan/mu/progressive/progressive_black_metal/deathspell_omega/2010_paracletus/02_wings_of_predation.flac")
-			}
-		case <- quit:
-			ticker.Stop()
-			return
-		}
-	}
+func print_help() {
+	fmt.Println("help")
 }
 
-func get_time() []string {
-	now := time.Now()
-	t := strings.Split(now.Format("15:04:05"), ":")
-	return t
+func print_real_help() {
+	fmt.Println("send help")
+}
+
+func print_version() {
+	fmt.Println(PROGNAME, VERSION)
+}
+
+func print_time(t []string) {
+	fmt.Print("\rTime is: ", t[HOURS], ":", t[MINS], ":", t[SECS])
+}
+
+func print_left_to_sleep(curr_t []string, dest_t []string) {
 }
