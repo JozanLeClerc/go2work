@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/c_go2work.go
- * Thu Mar 24 16:17:06 CET 2022
+ * Tue Mar 29 20:10:23 CEST 2022
  * Joe
  *
  * The main.
@@ -49,27 +49,35 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"os"
 	"time"
+	"strings"
+)
+
+const (
+	PROGNAME = "go2work"
 )
 
 func main() {
-	t := get_time()
-	ticker := time.NewTicker(2 * time.Second)
+	log.SetPrefix(PROGNAME + ": ")
+	log.SetFlags(0)
+	if len(os.Args[0:]) == 1 {
+		log.Fatal("No arguments")
+		return
+	}
+	curr_h, curr_m := get_time()
+	dest_t := os.Args[1]
+	dest_h := strings.Split(dest_t, ":")
+	fmt.Println("dest_splitted: ", dest_h)
+	ticker := time.NewTicker(5 * time.Second)
 	quit := make(chan struct{})
-	fmt.Println("Time is: " + t)
-	exec_player(
-		true,
-		"mpv",
-		"--no-video",
-		"/home/jozan/mu/rock/grunge/nirvana/1993_in_utero/04_rape_me.flac")
+	fmt.Println("Time is: " + curr_h + ":" + curr_m)
 	for {
 		select {
 		case <- ticker.C:
-			exec_player(
-				false,
-				"mpv",
-				"--no-video",
-				"/home/jozan/mu/rock/grunge/nirvana/1993_in_utero/04_rape_me.flac")
+			curr_h, curr_m = get_time()
+			exec_player(false, "mpv", "--no-video", "/home/jozan/mu/rock/grunge/nirvana/1993_in_utero/04_rape_me.flac")
 		case <- quit:
 			ticker.Stop()
 			return
@@ -77,9 +85,11 @@ func main() {
 	}
 }
 
-func get_time() string {
-	var hm string
+func get_time() (string, string) {
+	var h  string
+	var m  string
 	t := time.Now()
-	hm = t.Format("15:04")
-	return hm
+	h  = t.Format("15")
+	m  = t.Format("04")
+	return h, m
 }

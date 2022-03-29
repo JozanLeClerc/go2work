@@ -16,7 +16,7 @@
 #
 # GNU Makefile
 
-default: run
+default: build
 
 SHELL		:= /bin/sh
 OS			 = $(shell uname)
