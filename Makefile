@@ -11,7 +11,7 @@
 # ========================
 #
 # go2work: Makefile
-# Tue Mar 29 22:14:45 CEST 2022
+# Wed Mar 30 01:26:09 CEST 2022
 # Joe
 #
 # GNU Makefile
@@ -27,6 +27,7 @@ TRGT_DIR	 = ./
 
 SRCS_NAME	 = c_go2work
 SRCS_NAME	+= c_player
+SRCS_NAME	+= u_checks
 SRCS_NAME	+= u_prints
 SRCS_NAME	+= u_utils
 

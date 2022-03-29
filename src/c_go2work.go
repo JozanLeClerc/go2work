@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/c_go2work.go
- * Wed Mar 30 00:16:51 CEST 2022
+ * Wed Mar 30 01:38:10 CEST 2022
  * Joe
  *
  * The main.
@@ -48,6 +48,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"time"
@@ -56,12 +57,15 @@ import (
 )
 
 const (
-	PROGNAME	= "go2work"
-	VERSION		= "0.1.0"
-	HOURS		= 0
-	MINS		= 1
-	SECS		= 2
-	INTERVAL	= 500
+	PROGNAME		= "go2work"
+	VERSION			= "0.1.0"
+	HOURS			= 0
+	MINS			= 1
+	SECS			= 2
+	INTERVAL		= 500
+	USE_FORTUNE		= true
+	MEDIA_PLAYER	= "mpv"
+	LOG_FORMAT		= "bad time format"
 )
 
 func main() {
@@ -71,7 +75,7 @@ func main() {
 	log.SetPrefix(PROGNAME + ": ")
 	log.SetFlags(0)
 	if len(os.Args[0:]) == 1 {
-		log.Fatal("No arguments")
+		log.Fatal("no arguments")
 		return
 	}
 	switch os.Args[1] {
@@ -87,12 +91,26 @@ func main() {
 	case "-t", "--test":
 		dest_t = get_test_time()
 	default:
+		if strings.Contains(os.Args[1], ":") == false {
+			log.Fatal("bad time format")
+		}
 		str_dest_t := strings.Split(os.Args[1], ":")
 		tmp, _ = strconv.Atoi(str_dest_t[HOURS])
 		dest_t[HOURS] = byte(tmp)
 		tmp, _ = strconv.Atoi(str_dest_t[MINS])
 		dest_t[MINS] = byte(tmp)
 		dest_t[SECS] = 0
+	}
+	if check_media_player(MEDIA_PLAYER) == false {
+		log.Fatal("media player (" + MEDIA_PLAYER + ") not found")
+		return
+	}
+	if USE_FORTUNE == true && check_fortune() == false {
+		fmt.Println("Beware, fortune is set on but was not found")
+	}
+	if check_time_format(dest_t) == false {
+		log.Fatal("bad time format")
+		return
 	}
 	curr_t = get_time()
 	print_time_left(curr_t, dest_t)
@@ -107,8 +125,8 @@ func main() {
 				curr_t[MINS] == dest_t[MINS] &&
 				curr_t[SECS] == dest_t[SECS] {
 				exec_player(
-					true,
-					"mpv",
+					USE_FORTUNE,
+					MEDIA_PLAYER,
 					"--no-video",
 					"/usr/home/jozan/mu/progressive/progressive_black_metal/deathspell_omega/2010_paracletus/02_wings_of_predation.flac",
 				)
@@ -119,22 +137,4 @@ func main() {
 			return
 		}
 	}
-}
-
-func get_time() [3]byte {
-	var curr_t [3]byte
-	var tmp int
-	now := time.Now()
-	t := strings.Split(now.Format("15:04:05"), ":")
-	tmp, _ = strconv.Atoi(t[HOURS])
-	curr_t[HOURS] = byte(tmp)
-	tmp, _ = strconv.Atoi(t[MINS])
-	curr_t[MINS] = byte(tmp)
-	tmp, _ = strconv.Atoi(t[SECS])
-	curr_t[SECS] = byte(tmp)
-	return curr_t
-}
-
-func get_test_time() [3]byte {
-	return seconds_to_time(time_to_seconds(get_time()) + 3)
 }

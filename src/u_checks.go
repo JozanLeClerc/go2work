@@ -38,35 +38,43 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * go2work: src/c_player.go
- * Wed Mar 30 01:18:12 CEST 2022
+ * go2work: src/u_checks.go
+ * Wed Mar 30 01:25:35 CEST 2022
  * Joe
  *
- * Funcs to play the file
+ * Useful checks.
  */
 
 package main
 
 import (
-	"bytes"
-	"fmt"
-	"log"
 	"os/exec"
 )
 
-func exec_player(show_fortune bool, args ...string) {
-	var cmd *exec.Cmd
-	if show_fortune == true {
-		fmt.Print("\n\n")
-		cmd = exec.Command("fortune", "-s")
-		var out bytes.Buffer
-		cmd.Stdout = &out
-		cmd.Run()
-		fmt.Println(out.String())
-	}
-	cmd = exec.Command(args[0], append(args[1:])...)
-	err := cmd.Run();
+func check_media_player(media_player string) bool {
+	cmd := exec.Command("command", "-v", media_player)
+	err := cmd.Run()
 	if err != nil {
-		log.Fatal(err)
+		return false
 	}
+	return true
+}
+
+func check_fortune() bool {
+	cmd := exec.Command("command", "-v", "fortune")
+	err := cmd.Run()
+	if err != nil {
+		return false
+	}
+	return true
+}
+
+func check_time_format(time [3]byte) bool {
+	if time[HOURS] > 23 {
+		return false
+	}
+	if time[MINS] > 59 {
+		return false
+	}
+	return true
 }

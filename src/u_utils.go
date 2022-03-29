@@ -39,11 +39,17 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/u_utils.go
- * Wed Mar 30 00:02:25 CEST 2022
+ * Wed Mar 30 01:25:20 CEST 2022
  * Joe
  */
 
 package main
+
+import (
+	"time"
+	"strconv"
+	"strings"
+)
 
 func time_to_seconds(time [3]byte) uint {
 	return (3600 * uint(time[HOURS])) +
@@ -60,4 +66,22 @@ func seconds_to_time(seconds uint) [3]byte {
 	time[MINS] = byte(mins)
 	time[SECS] = byte((seconds - (hours * 3600)) - mins * 60)
 	return time
+}
+
+func get_time() [3]byte {
+	var curr_t [3]byte
+	var tmp int
+	now := time.Now()
+	t := strings.Split(now.Format("15:04:05"), ":")
+	tmp, _ = strconv.Atoi(t[HOURS])
+	curr_t[HOURS] = byte(tmp)
+	tmp, _ = strconv.Atoi(t[MINS])
+	curr_t[MINS] = byte(tmp)
+	tmp, _ = strconv.Atoi(t[SECS])
+	curr_t[SECS] = byte(tmp)
+	return curr_t
+}
+
+func get_test_time() [3]byte {
+	return seconds_to_time(time_to_seconds(get_time()) + 3)
 }
