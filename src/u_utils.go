@@ -39,14 +39,14 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/u_utils.go
- * Tue Mar 29 22:15:50 CEST 2022
+ * Tue Mar 29 22:32:20 CEST 2022
  * Joe
  */
 
 package main
 
-func time_to_seconds(time [3]int) int {
+func time_to_seconds(time [3]byte) uint16 {
 }
 
-func seconds_to_time(seconds int) [3]int {
+func seconds_to_time(seconds uint16) [3]byte {
 }

@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/u_prints.go
- * Tue Mar 29 22:15:02 CEST 2022
+ * Tue Mar 29 22:41:23 CEST 2022
  * Joe
  *
  * Stuff to print
@@ -49,26 +49,40 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 )
 
-func print_time(t []string) {
+func print_time(t [3]byte) {
 	fmt.Print("\rTime is: ", t[HOURS], ":", t[MINS], ":", t[SECS])
 }
 
-func print_time_left(curr_t []int, dest_t []int) {
-	var left_t [2]int
-	left_t = int{0, 0}
-	h, _ := strconv.Atoi(curr)
-	m
-	s, _ := strconv.Atoi(curr_t[SECS])
-	s = 60 - s
-	fmt.Print(
-		"\rTime left to sleep: ",
-		left_t[HOURS], "h ",
-		left_t[MINS], "m ",
-		s, "s",
-	)
+func print_time_left(curr_t [3]byte, dest_t [3]byte) {
+	curr_secs := time_to_seconds(curr_t)
+	dest_secs := time_to_seconds(dest_t)
+	left_secs := curr_secs - dest_secs
+	fmt.Println("left_secs: [", left_secs, "]")
+	// left_t := seconds_to_time(left_secs)
+	// if left_secs < 60 {
+	// 	fmt.Print(
+	// 		"\r",
+	// 		left_t[SECS], "s",
+	// 		" left to sleep",
+	// 	)
+	// } else if left_secs < 3600 {
+	// 	fmt.Print(
+	// 		"\r",
+	// 		left_t[MINS], "m ",
+	// 		left_t[SECS], "s",
+	// 		" left to sleep",
+	// 	)
+	// } else {
+	// 	fmt.Print(
+	// 		"\r",
+	// 		left_t[HOURS], "h ",
+	// 		left_t[MINS],  "m ",
+	// 		left_t[SECS],  "s",
+	// 		" left to sleep",
+	// 	)
+	// }
 }
 
 func print_help() {

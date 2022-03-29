@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/c_go2work.go
- * Tue Mar 29 22:14:51 CEST 2022
+ * Tue Mar 29 22:32:07 CEST 2022
  * Joe
  *
  * The main.
@@ -64,7 +64,8 @@ const (
 )
 
 func main() {
-	var dest_t [2]int
+	var dest_t [3]byte
+	var tmp int
 	log.SetPrefix(PROGNAME + ": ")
 	log.SetFlags(0)
 	if len(os.Args[0:]) == 1 {
@@ -84,8 +85,11 @@ func main() {
 	}
 	curr_t := get_time()
 	str_dest_t := strings.Split(os.Args[1], ":")
-	dest_t[HOURS], _ = strconv.Atoi(str_dest_t[HOURS])
-	dest_t[MINS],  _ = strconv.Atoi(str_dest_t[MINS])
+	tmp, _ = strconv.Atoi(str_dest_t[HOURS])
+	dest_t[HOURS] = byte(tmp)
+	tmp, _ = strconv.Atoi(str_dest_t[MINS])
+	dest_t[MINS] = byte(tmp)
+	dest_t[SECS] = 0
 	// dest_t = [2]int{0, 0}
 	ticker := time.NewTicker(1 * time.Second)
 	quit := make(chan struct{})
@@ -111,12 +115,16 @@ func main() {
 	}
 }
 
-func get_time() [3]int {
-	var curr_t [3]int
+func get_time() [3]byte {
+	var curr_t [3]byte
+	var tmp int
 	now := time.Now()
 	t := strings.Split(now.Format("15:04:05"), ":")
-	curr_t[HOURS], _ = strconv.Atoi(t[HOURS])
-	curr_t[MINS], _ = strconv.Atoi(t[MINS])
-	curr_t[SECS], _ = strconv.Atoi(t[SECS])
+	tmp, _ = strconv.Atoi(t[HOURS])
+	curr_t[HOURS] = byte(tmp)
+	tmp, _ = strconv.Atoi(t[MINS])
+	curr_t[MINS] = byte(tmp)
+	tmp, _ = strconv.Atoi(t[SECS])
+	curr_t[SECS] = byte(tmp)
 	return curr_t
 }
