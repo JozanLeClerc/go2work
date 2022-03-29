@@ -56,37 +56,49 @@ func print_time(t [3]byte) {
 }
 
 func print_time_left(curr_t [3]byte, dest_t [3]byte) {
+	var left_secs uint
 	curr_secs := time_to_seconds(curr_t)
 	dest_secs := time_to_seconds(dest_t)
-	left_secs := curr_secs - dest_secs
-	fmt.Println("left_secs: [", left_secs, "]")
-	// left_t := seconds_to_time(left_secs)
-	// if left_secs < 60 {
-	// 	fmt.Print(
-	// 		"\r",
-	// 		left_t[SECS], "s",
-	// 		" left to sleep",
-	// 	)
-	// } else if left_secs < 3600 {
-	// 	fmt.Print(
-	// 		"\r",
-	// 		left_t[MINS], "m ",
-	// 		left_t[SECS], "s",
-	// 		" left to sleep",
-	// 	)
-	// } else {
-	// 	fmt.Print(
-	// 		"\r",
-	// 		left_t[HOURS], "h ",
-	// 		left_t[MINS],  "m ",
-	// 		left_t[SECS],  "s",
-	// 		" left to sleep",
-	// 	)
-	// }
+	if curr_secs <= dest_secs {
+		left_secs = dest_secs - curr_secs
+	} else {
+		left_secs = (dest_secs + (24 * 3600)) - curr_secs
+	}
+	left_t := seconds_to_time(left_secs)
+	if left_secs < 60 {
+		fmt.Print("\r                         ")
+		fmt.Print(
+			"\r",
+			left_t[SECS], "s",
+			" left to sleep",
+		)
+	} else if left_secs < 3600 {
+		fmt.Print(
+			"\r",
+			left_t[MINS], "m ",
+			left_t[SECS], "s",
+			" left to sleep",
+		)
+	} else {
+		fmt.Print(
+			"\r",
+			left_t[HOURS], "h ",
+			left_t[MINS],  "m ",
+			left_t[SECS],  "s",
+			" left to sleep",
+		)
+	}
 }
 
 func print_help() {
-	fmt.Println("help")
+	fmt.Println("Usage:
+  go2work [option / time]
+
+Options:
+  -h    show this help menu
+  -H    show the real help menu
+  -v    show version of go2work
+  ")
 }
 
 func print_real_help() {

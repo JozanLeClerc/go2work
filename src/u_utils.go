@@ -39,14 +39,25 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/u_utils.go
- * Tue Mar 29 22:32:20 CEST 2022
+ * Wed Mar 30 00:02:25 CEST 2022
  * Joe
  */
 
 package main
 
-func time_to_seconds(time [3]byte) uint16 {
+func time_to_seconds(time [3]byte) uint {
+	return (3600 * uint(time[HOURS])) +
+		(60 * uint(time[MINS])) +
+		uint(time[SECS])
 }
 
-func seconds_to_time(seconds uint16) [3]byte {
+func seconds_to_time(seconds uint) [3]byte {
+	var time [3]byte
+	var hours, mins uint
+	hours = seconds / 3600
+	time[HOURS] = byte(hours)
+	mins = (seconds - ((hours) * 3600)) / 60
+	time[MINS] = byte(mins)
+	time[SECS] = byte((seconds - (hours * 3600)) - mins * 60)
+	return time
 }

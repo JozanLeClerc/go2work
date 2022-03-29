@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/c_go2work.go
- * Tue Mar 29 22:32:07 CEST 2022
+ * Wed Mar 30 00:16:51 CEST 2022
  * Joe
  *
  * The main.
@@ -64,6 +64,7 @@ const (
 )
 
 func main() {
+	var curr_t [3]byte
 	var dest_t [3]byte
 	var tmp int
 	log.SetPrefix(PROGNAME + ": ")
@@ -82,24 +83,28 @@ func main() {
 	case "-v":
 		print_version()
 		return
+	case "-t":
+		dest_t = get_test_time()
+	default:
+		str_dest_t := strings.Split(os.Args[1], ":")
+		tmp, _ = strconv.Atoi(str_dest_t[HOURS])
+		dest_t[HOURS] = byte(tmp)
+		tmp, _ = strconv.Atoi(str_dest_t[MINS])
+		dest_t[MINS] = byte(tmp)
+		dest_t[SECS] = 0
 	}
-	curr_t := get_time()
-	str_dest_t := strings.Split(os.Args[1], ":")
-	tmp, _ = strconv.Atoi(str_dest_t[HOURS])
-	dest_t[HOURS] = byte(tmp)
-	tmp, _ = strconv.Atoi(str_dest_t[MINS])
-	dest_t[MINS] = byte(tmp)
-	dest_t[SECS] = 0
-	// dest_t = [2]int{0, 0}
-	ticker := time.NewTicker(1 * time.Second)
+	curr_t = get_time()
+	print_time_left(curr_t, dest_t)
+	ticker := time.NewTicker(500 * time.Millisecond)
 	quit := make(chan struct{})
 	for {
 		select {
 		case <- ticker.C:
 			curr_t = get_time()
-			// print_time(curr_t)
 			print_time_left(curr_t, dest_t)
-			if curr_t[HOURS] == dest_t[HOURS] && curr_t[MINS] == dest_t[MINS] {
+			if curr_t[HOURS] == dest_t[HOURS] &&
+				curr_t[MINS] == dest_t[MINS] &&
+				curr_t[SECS] == dest_t[SECS] {
 				exec_player(
 					true,
 					"mpv",
@@ -127,4 +132,8 @@ func get_time() [3]byte {
 	tmp, _ = strconv.Atoi(t[SECS])
 	curr_t[SECS] = byte(tmp)
 	return curr_t
+}
+
+func get_test_time() [3]byte {
+	return seconds_to_time(time_to_seconds(get_time()) + 3)
 }
