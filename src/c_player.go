@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/c_player.go
- * Wed Mar 30 01:18:12 CEST 2022
+ * Wed Mar 30 13:20:13 CEST 2022
  * Joe
  *
  * Funcs to play the file
@@ -54,7 +54,7 @@ import (
 	"os/exec"
 )
 
-func exec_player(show_fortune bool, args ...string) {
+func exec_player(show_fortune bool, player string, args ...string) {
 	var cmd *exec.Cmd
 	if show_fortune == true {
 		fmt.Print("\n\n")
@@ -64,7 +64,7 @@ func exec_player(show_fortune bool, args ...string) {
 		cmd.Run()
 		fmt.Println(out.String())
 	}
-	cmd = exec.Command(args[0], append(args[1:])...)
+	cmd = exec.Command(player, append(args[0:])...)
 	err := cmd.Run();
 	if err != nil {
 		log.Fatal(err)

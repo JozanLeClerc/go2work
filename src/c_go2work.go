@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/c_go2work.go
- * Wed Mar 30 01:38:10 CEST 2022
+ * Wed Mar 30 13:20:26 CEST 2022
  * Joe
  *
  * The main.
@@ -112,11 +112,11 @@ func main() {
 			if curr_t[HOURS] == dest_t[HOURS] &&
 				curr_t[MINS] == dest_t[MINS] &&
 				curr_t[SECS] == dest_t[SECS] {
+				args := append(DEF_PLAYER_OPTIONS(), DEF_FILES()[0])
 				exec_player(
 					DEF_USE_FORTUNE,
 					DEF_MEDIA_PLAYER,
-					"--no-video",
-					DEF_FILES,
+					args...,
 				)
 				return
 			}

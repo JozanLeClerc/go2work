@@ -55,12 +55,23 @@ const (
 	SECS				= 2
 	INTERVAL			= 500
 	LOG_FORMAT			= "bad time format"
-	DEF_FILES			= "/usr/home/jozan/mu/progressive/progressive_black_metal/deathspell_omega/2010_paracletus/02_wings_of_predation.flac"
 	DEF_MEDIA_PLAYER	= "mpv"
-	DEF_PLAYER_OPTIONS	= []string{"--no-video", "--loop"}
 	DEF_RANDOM			= true
 	DEF_USE_FORTUNE		= true
 )
+
+func DEF_FILES() []string {
+	return []string{
+		"/usr/home/jozan/mu/progressive/progressive_black_metal/deathspell_omega/2010_paracletus/02_wings_of_predation.flac",
+	}
+}
+
+func DEF_PLAYER_OPTIONS() []string {
+	return []string{
+		"--no-video",
+		"--loop",
+	}
+}
 
 type options struct {
 	files			[]string
