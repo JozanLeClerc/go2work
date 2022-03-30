@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/c_defs.go
- * Wed Mar 30 13:02:47 CEST 2022
+ * Wed Mar 30 13:33:39 CEST 2022
  * Joe
  *
  * Definitions.
@@ -63,6 +63,7 @@ const (
 func DEF_FILES() []string {
 	return []string{
 		"/usr/home/jozan/mu/progressive/progressive_black_metal/deathspell_omega/2010_paracletus/02_wings_of_predation.flac",
+		"/usr/home/jozan/docs/dr2_art/sounds/sfx/broking_cursed_object.wav",
 	}
 }
 
