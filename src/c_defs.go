@@ -38,91 +38,34 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * go2work: src/c_go2work.go
- * Wed Mar 30 01:38:10 CEST 2022
+ * go2work: src/c_defs.go
+ * Wed Mar 30 13:02:47 CEST 2022
  * Joe
  *
- * The main.
+ * Definitions.
  */
 
 package main
 
-import (
-	"fmt"
-	"log"
-	"os"
-	"time"
-	"strconv"
-	"strings"
+const (
+	PROGNAME			= "go2work"
+	VERSION				= "0.1.0"
+	HOURS				= 0
+	MINS				= 1
+	SECS				= 2
+	INTERVAL			= 500
+	LOG_FORMAT			= "bad time format"
+	DEF_FILES			= "/usr/home/jozan/mu/progressive/progressive_black_metal/deathspell_omega/2010_paracletus/02_wings_of_predation.flac"
+	DEF_MEDIA_PLAYER	= "mpv"
+	DEF_PLAYER_OPTIONS	= []string{"--no-video", "--loop"}
+	DEF_RANDOM			= true
+	DEF_USE_FORTUNE		= true
 )
 
-func main() {
-	var curr_t [3]byte
-	var dest_t [3]byte
-	var tmp int
-	log.SetPrefix(PROGNAME + ": ")
-	log.SetFlags(0)
-	if len(os.Args[0:]) == 1 {
-		log.Fatal("no arguments")
-		return
-	}
-	switch os.Args[1] {
-	case "-h", "--help":
-		print_help()
-		return
-	case "-H", "--real-help":
-		print_real_help()
-		return
-	case "-v", "--version":
-		print_version()
-		return
-	case "-t", "--test":
-		dest_t = get_test_time()
-	default:
-		if strings.Contains(os.Args[1], ":") == false {
-			log.Fatal(LOG_FORMAT)
-		}
-		str_dest_t := strings.Split(os.Args[1], ":")
-		tmp, _ = strconv.Atoi(str_dest_t[HOURS])
-		dest_t[HOURS] = byte(tmp)
-		tmp, _ = strconv.Atoi(str_dest_t[MINS])
-		dest_t[MINS] = byte(tmp)
-		dest_t[SECS] = 0
-	}
-	if check_media_player(DEF_MEDIA_PLAYER) == false {
-		log.Fatal("media player (" + DEF_MEDIA_PLAYER + ") not found")
-		return
-	}
-	if DEF_USE_FORTUNE == true && check_fortune() == false {
-		fmt.Println("Beware, fortune is set on but was not found")
-	}
-	if check_time_format(dest_t) == false {
-		log.Fatal(LOG_FORMAT)
-		return
-	}
-	curr_t = get_time()
-	print_time_left(curr_t, dest_t)
-	ticker := time.NewTicker(INTERVAL * time.Millisecond)
-	quit := make(chan struct{})
-	for {
-		select {
-		case <- ticker.C:
-			curr_t = get_time()
-			print_time_left(curr_t, dest_t)
-			if curr_t[HOURS] == dest_t[HOURS] &&
-				curr_t[MINS] == dest_t[MINS] &&
-				curr_t[SECS] == dest_t[SECS] {
-				exec_player(
-					DEF_USE_FORTUNE,
-					DEF_MEDIA_PLAYER,
-					"--no-video",
-					DEF_FILES,
-				)
-				return
-			}
-		case <- quit:
-			ticker.Stop()
-			return
-		}
-	}
+type options struct {
+	files			[]string
+	media_player	string
+	player_options	[]string
+	random			bool
+	use_fortune		bool
 }
