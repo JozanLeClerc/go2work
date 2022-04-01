@@ -98,7 +98,7 @@ func main() {
 	fmt.Println(options.player_options)
 	fmt.Println(options.random)
 	fmt.Println(options.use_fortune)
-	fmt.Println("=======")
+	fmt.Println("=======\n")
 	if check_time_format(dest_t) == false {
 		log.Fatalln(LOG_FORMAT)
 		return
