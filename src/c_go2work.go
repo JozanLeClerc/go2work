@@ -48,7 +48,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 	"time"
@@ -100,7 +99,7 @@ func main() {
 		return
 	}
 	if options.use_fortune == true && check_fortune() == false {
-		fmt.Println("Beware, fortune is set on but was not found")
+		print_fortune_not_found()
 	}
 	curr_t = get_time()
 	print_time_left(curr_t, dest_t)
@@ -114,8 +113,7 @@ func main() {
 			if curr_t[HOURS] == dest_t[HOURS] &&
 				curr_t[MINS] == dest_t[MINS] &&
 				curr_t[SECS] == dest_t[SECS] {
-				// TODO: implement random
-				args := append(DEF_PLAYER_OPTIONS(), DEF_FILES()[0])
+				args := append(options.player_options, options.files[0])
 				has_rang := false
 				for {
 					exec_player(
