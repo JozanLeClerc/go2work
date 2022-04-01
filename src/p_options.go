@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/p_options.go
- * Fri Apr  1 19:44:09 CEST 2022
+ * Fri Apr  1 21:13:50 CEST 2022
  * Joe
  *
  * Options parsing.
@@ -48,9 +48,10 @@
 package main
 
 import (
-	"github.com/BurntSushi/toml"
+	"fmt"
 	"log"
 	"os"
+	"github.com/BurntSushi/toml"
 )
 
 func parse_options() Options {
@@ -96,6 +97,18 @@ func find_options_file() string {
 
 func parse_toml_file(options_file string, def_options Options) Options {
 	options := def_options
-	toml.DecodeFile(options_file, &options)
+	fmt.Println(options_file)
+	_, err := toml.DecodeFile(options_file, &options)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println("OPTIONS")
+	fmt.Println("=======")
+	fmt.Println(options.files)
+	fmt.Println(options.media_player)
+	fmt.Println(options.player_options)
+	fmt.Println(options.random)
+	fmt.Println(options.use_fortune)
+	fmt.Println("=======\n")
 	return options
 }

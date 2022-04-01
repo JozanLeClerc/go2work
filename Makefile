@@ -11,7 +11,7 @@
 # ========================
 #
 # go2work: Makefile
-# Fri Apr  1 17:04:04 CEST 2022
+# Fri Apr  1 21:01:49 CEST 2022
 # Joe
 #
 # GNU Makefile
@@ -42,8 +42,10 @@ MKDIR		 = mkdir -p
 RMDIR		 = rmdir
 RM			 = rm -rf
 
-build:
+deps:
 	go get github.com/BurntSushi/toml@latest
+
+build:
 	go build -o ${TARGET} ${SRCS}
 
 clean:
@@ -52,7 +54,7 @@ clean:
 run:
 	go run ${SRCS}
 
-.PHONY:	build clean run
+.PHONY:	build clean run deps
 
 # File prefixes info
 # ------------------

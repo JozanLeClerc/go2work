@@ -57,7 +57,7 @@ const (
 	LOG_FORMAT			= "bad time format"
 	OPTIONS_FILE		= PROGNAME + "/" + PROGNAME + ".toml"
 	DEF_MEDIA_PLAYER	= "mpv"
-	DEF_RANDOM			= true
+	DEF_RANDOM			= false
 	DEF_USE_FORTUNE		= true
 )
 
