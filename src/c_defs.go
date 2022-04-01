@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/c_defs.go
- * Fri Apr  1 18:25:16 CEST 2022
+ * Fri Apr  1 18:49:56 CEST 2022
  * Joe
  *
  * Definitions.
@@ -55,6 +55,7 @@ const (
 	SECS				= 2
 	INTERVAL			= 500
 	LOG_FORMAT			= "bad time format"
+	OPTIONS_FILE		= PROGNAME + "/" + PROGNAME + ".toml"
 	DEF_MEDIA_PLAYER	= "mpv"
 	DEF_RANDOM			= true
 	DEF_USE_FORTUNE		= true
@@ -69,8 +70,8 @@ func DEF_FILES() []string {
 
 func DEF_PLAYER_OPTIONS() []string {
 	return []string{
-		"--loop",
 		"--no-video",
+		"--loop",
 	}
 }
 

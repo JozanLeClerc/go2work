@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/p_options.go
- * Fri Apr  1 17:16:04 CEST 2022
+ * Fri Apr  1 19:44:09 CEST 2022
  * Joe
  *
  * Options parsing.
@@ -47,8 +47,18 @@
 
 package main
 
+import (
+	"log"
+	"os"
+)
+
 func parse_options() Options {
 	options := init_def_options()
+	options_file := find_options_file()
+	if options_file == "" {
+		return options
+	}
+	options = parse_toml_file(options_file, options)
 	return options
 }
 
@@ -60,5 +70,30 @@ func init_def_options() Options {
 		random:			DEF_RANDOM,
 		use_fortune:	DEF_USE_FORTUNE,
 	}
+	return options
+}
+
+func find_options_file() string {
+	val, exists := os.LookupEnv("XDG_CONFIG_HOME")
+	var file_path string
+	if exists == true {
+		file_path = val + "/" + OPTIONS_FILE
+		if check_file_exists(file_path) == true {
+			return file_path
+		}
+	}
+	dir, err := os.UserHomeDir()
+	if err != nil {
+		log.Fatal(err)
+	}
+	file_path = dir + "/.config/" + OPTIONS_FILE
+	if check_file_exists(file_path) == true {
+		return file_path
+	}
+	return ""
+}
+
+func parse_toml_file(options_file string, def_options Options) Options {
+	options := def_options
 	return options
 }

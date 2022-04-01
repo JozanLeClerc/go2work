@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/u_checks.go
- * Wed Mar 30 01:25:35 CEST 2022
+ * Fri Apr  1 18:30:55 CEST 2022
  * Joe
  *
  * Useful checks.
@@ -48,6 +48,7 @@
 package main
 
 import (
+	"os"
 	"os/exec"
 )
 
@@ -74,6 +75,14 @@ func check_time_format(time [3]byte) bool {
 		return false
 	}
 	if time[MINS] > 59 {
+		return false
+	}
+	return true
+}
+
+func check_file_exists(file string) bool {
+	_, err := os.Stat(file)
+	if os.IsNotExist(err) == true {
 		return false
 	}
 	return true

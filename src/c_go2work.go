@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/c_go2work.go
- * Fri Apr  1 18:26:36 CEST 2022
+ * Fri Apr  1 18:36:54 CEST 2022
  * Joe
  *
  * The main.
@@ -48,6 +48,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"time"
@@ -90,8 +91,16 @@ func main() {
 		dest_t[SECS] = 0
 	}
 	options = parse_options()
+	fmt.Println("OPTIONS")
+	fmt.Println("=======")
+	fmt.Println(options.files)
+	fmt.Println(options.media_player)
+	fmt.Println(options.player_options)
+	fmt.Println(options.random)
+	fmt.Println(options.use_fortune)
+	fmt.Println("=======")
 	if check_time_format(dest_t) == false {
-		log.Fatal(LOG_FORMAT)
+		log.Fatalln(LOG_FORMAT)
 		return
 	}
 	if check_media_player(options.media_player) == false {
@@ -105,7 +114,6 @@ func main() {
 	print_time_left(curr_t, dest_t)
 	ticker := time.NewTicker(INTERVAL * time.Millisecond)
 	quit := make(chan struct{})
-	file_id := choose_file(options)
 	for {
 		select {
 		case <- ticker.C:
@@ -114,7 +122,19 @@ func main() {
 			if curr_t[HOURS] == dest_t[HOURS] &&
 				curr_t[MINS] == dest_t[MINS] &&
 				curr_t[SECS] == dest_t[SECS] {
-				args := append(options.player_options, options.files[file_id])
+				file_id := choose_file(options)
+				var args []string
+				if file_id > 0 {
+					args = append(
+						options.player_options,
+						options.files[file_id],
+					)
+				} else {
+					args = append(
+						options.player_options,
+						DEF_FILES()[0],
+					)
+				}
 				has_rang := false
 				for {
 					exec_player(

@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/u_utils.go
- * Fri Apr  1 18:25:20 CEST 2022
+ * Fri Apr  1 18:36:59 CEST 2022
  * Joe
  */
 
@@ -94,6 +94,10 @@ func choose_file(options Options) int {
 		file_id = rand.Intn(file_id)
 	} else {
 		file_id = 0
+	}
+	if check_file_exists(options.files[file_id]) == false {
+		print_file_not_found(options.files[file_id])
+		return -1
 	}
 	return file_id
 }
