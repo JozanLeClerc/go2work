@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/c_go2work.go
- * Fri Apr  1 17:03:18 CEST 2022
+ * Fri Apr  1 17:40:27 CEST 2022
  * Joe
  *
  * The main.
@@ -116,12 +116,16 @@ func main() {
 				curr_t[SECS] == dest_t[SECS] {
 				// implement random
 				args := append(DEF_PLAYER_OPTIONS(), DEF_FILES()[0])
-				exec_player(
-					options.use_fortune,
-					options.media_player,
-					args...,
-				)
-				return
+				has_rang := false
+				for {
+					exec_player(
+						options.use_fortune,
+						has_rang,
+						options.media_player,
+						args...,
+					)
+					has_rang = true
+				}
 			}
 		case <- quit:
 			ticker.Stop()

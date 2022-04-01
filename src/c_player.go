@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/c_player.go
- * Wed Mar 30 13:20:13 CEST 2022
+ * Fri Apr  1 17:40:31 CEST 2022
  * Joe
  *
  * Funcs to play the file
@@ -54,9 +54,24 @@ import (
 	"os/exec"
 )
 
-func exec_player(show_fortune bool, player string, args ...string) {
+func has_rang() (f func()(int)) {
+	var i int
+	i = 0
+	f = func()(int) {
+		i++
+		return i
+	}
+	return
+}
+
+func exec_player(
+	show_fortune bool,
+	has_rang bool,
+	player string,
+	args ...string,
+) {
 	var cmd *exec.Cmd
-	if show_fortune == true {
+	if show_fortune == true && has_rang == false {
 		fmt.Print("\n\n")
 		cmd = exec.Command("fortune", "-s")
 		var out bytes.Buffer
