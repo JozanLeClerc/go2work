@@ -60,7 +60,7 @@ func main() {
 	var curr_t [3]byte
 	var dest_t [3]byte
 	var tmp int
-	var options options
+	var options Options
 	log.SetPrefix(PROGNAME + ": ")
 	log.SetFlags(0)
 	if len(os.Args[0:]) == 1 {
@@ -114,6 +114,7 @@ func main() {
 			if curr_t[HOURS] == dest_t[HOURS] &&
 				curr_t[MINS] == dest_t[MINS] &&
 				curr_t[SECS] == dest_t[SECS] {
+				// implement random
 				args := append(DEF_PLAYER_OPTIONS(), DEF_FILES()[0])
 				exec_player(
 					options.use_fortune,

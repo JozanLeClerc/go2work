@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/p_options.go
- * Fri Apr  1 17:03:22 CEST 2022
+ * Fri Apr  1 17:16:04 CEST 2022
  * Joe
  *
  * Options parsing.
@@ -47,7 +47,18 @@
 
 package main
 
-func parse_options() options {
-	var options options
+func parse_options() Options {
+	options := init_def_options()
+	return options
+}
+
+func init_def_options() Options {
+	options := Options{
+		files:			DEF_FILES(),
+		media_player:	DEF_MEDIA_PLAYER,
+		player_options: DEF_PLAYER_OPTIONS(),
+		random:			DEF_RANDOM,
+		use_fortune:	DEF_USE_FORTUNE,
+	}
 	return options
 }

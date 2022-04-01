@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/c_defs.go
- * Wed Mar 30 13:33:39 CEST 2022
+ * Fri Apr  1 17:11:48 CEST 2022
  * Joe
  *
  * Definitions.
@@ -74,7 +74,7 @@ func DEF_PLAYER_OPTIONS() []string {
 	}
 }
 
-type options struct {
+type Options struct {
 	files			[]string
 	media_player	string
 	player_options	[]string
