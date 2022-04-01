@@ -114,7 +114,7 @@ func main() {
 			if curr_t[HOURS] == dest_t[HOURS] &&
 				curr_t[MINS] == dest_t[MINS] &&
 				curr_t[SECS] == dest_t[SECS] {
-				// implement random
+				// TODO: implement random
 				args := append(DEF_PLAYER_OPTIONS(), DEF_FILES()[0])
 				has_rang := false
 				for {
