@@ -48,6 +48,7 @@
 package main
 
 import (
+	"github.com/BurntSushi/toml"
 	"log"
 	"os"
 )
@@ -95,5 +96,6 @@ func find_options_file() string {
 
 func parse_toml_file(options_file string, def_options Options) Options {
 	options := def_options
+	toml.DecodeFile(options_file, &options)
 	return options
 }

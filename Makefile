@@ -43,6 +43,7 @@ RMDIR		 = rmdir
 RM			 = rm -rf
 
 build:
+	go get github.com/BurntSushi/toml@latest
 	go build -o ${TARGET} ${SRCS}
 
 clean:
