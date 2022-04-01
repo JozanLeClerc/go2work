@@ -39,13 +39,14 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/u_utils.go
- * Wed Mar 30 01:25:20 CEST 2022
+ * Fri Apr  1 18:25:20 CEST 2022
  * Joe
  */
 
 package main
 
 import (
+	"math/rand"
 	"time"
 	"strconv"
 	"strings"
@@ -84,4 +85,15 @@ func get_time() [3]byte {
 
 func get_test_time() [3]byte {
 	return seconds_to_time(time_to_seconds(get_time()) + 3)
+}
+
+func choose_file(options Options) int {
+	file_id := len(options.files)
+	if options.random == true && file_id > 1 {
+		rand.Seed(time.Now().UnixNano())
+		file_id = rand.Intn(file_id)
+	} else {
+		file_id = 0
+	}
+	return file_id
 }

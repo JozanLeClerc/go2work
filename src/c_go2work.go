@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/c_go2work.go
- * Fri Apr  1 17:40:27 CEST 2022
+ * Fri Apr  1 18:26:36 CEST 2022
  * Joe
  *
  * The main.
@@ -105,6 +105,7 @@ func main() {
 	print_time_left(curr_t, dest_t)
 	ticker := time.NewTicker(INTERVAL * time.Millisecond)
 	quit := make(chan struct{})
+	file_id := choose_file(options)
 	for {
 		select {
 		case <- ticker.C:
@@ -113,7 +114,7 @@ func main() {
 			if curr_t[HOURS] == dest_t[HOURS] &&
 				curr_t[MINS] == dest_t[MINS] &&
 				curr_t[SECS] == dest_t[SECS] {
-				args := append(options.player_options, options.files[0])
+				args := append(options.player_options, options.files[file_id])
 				has_rang := false
 				for {
 					exec_player(

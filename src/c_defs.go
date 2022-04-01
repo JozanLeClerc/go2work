@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/c_defs.go
- * Fri Apr  1 17:40:35 CEST 2022
+ * Fri Apr  1 18:25:16 CEST 2022
  * Joe
  *
  * Definitions.
