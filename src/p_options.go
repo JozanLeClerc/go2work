@@ -97,7 +97,6 @@ func find_options_file() string {
 
 func parse_toml_file(options_file string, def_options Options) Options {
 	options := def_options
-	fmt.Println(options_file)
 	_, err := toml.DecodeFile(options_file, &options)
 	if err != nil {
 		log.Fatal(err)
