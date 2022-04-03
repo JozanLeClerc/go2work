@@ -88,15 +88,15 @@ func get_test_time() [3]byte {
 }
 
 func choose_file(options Options) int {
-	file_id := len(options.files)
-	if options.random == true && file_id > 1 {
+	file_id := len(options.Files)
+	if options.Random == true && file_id > 1 {
 		rand.Seed(time.Now().UnixNano())
 		file_id = rand.Intn(file_id)
 	} else {
 		file_id = 0
 	}
-	if check_file_exists(options.files[file_id]) == false {
-		print_file_not_found(options.files[file_id])
+	if check_file_exists(options.Files[file_id]) == false {
+		print_file_not_found(options.Files[file_id])
 		return -1
 	}
 	return file_id

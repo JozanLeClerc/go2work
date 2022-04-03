@@ -49,6 +49,7 @@ build:
 	go build -o ${TARGET} ${SRCS}
 
 clean:
+	go clean
 	${RM} ${TARGET}
 
 run:

@@ -76,9 +76,9 @@ func DEF_PLAYER_OPTIONS() []string {
 }
 
 type Options struct {
-	files			[]string
-	media_player	string
-	player_options	[]string
-	random			bool
-	use_fortune		bool
+	Files			[]string
+	Media_player	string
+	Player_options	[]string
+	Random			bool
+	Use_fortune		bool
 }

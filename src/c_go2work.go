@@ -94,11 +94,11 @@ func main() {
 		log.Fatalln(LOG_FORMAT)
 		return
 	}
-	if check_media_player(options.media_player) == false {
-		log.Fatal("media player (" + options.media_player + ") not found")
+	if check_media_player(options.Media_player) == false {
+		log.Fatal("media player (" + options.Media_player + ") not found")
 		return
 	}
-	if options.use_fortune == true && check_fortune() == false {
+	if options.Use_fortune == true && check_fortune() == false {
 		print_fortune_not_found()
 	}
 	curr_t = get_time()
@@ -117,21 +117,21 @@ func main() {
 				var args []string
 				if file_id > 0 {
 					args = append(
-						options.player_options,
-						options.files[file_id],
+						options.Player_options,
+						options.Files[file_id],
 					)
 				} else {
 					args = append(
-						options.player_options,
+						options.Player_options,
 						DEF_FILES()[0],
 					)
 				}
 				has_rang := false
 				for {
 					exec_player(
-						options.use_fortune,
+						options.Use_fortune,
 						has_rang,
-						options.media_player,
+						options.Media_player,
 						args...,
 					)
 					has_rang = true

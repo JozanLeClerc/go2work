@@ -66,11 +66,11 @@ func parse_options() Options {
 
 func init_def_options() Options {
 	options := Options{
-		files:			DEF_FILES(),
-		media_player:	DEF_MEDIA_PLAYER,
-		player_options: DEF_PLAYER_OPTIONS(),
-		random:			DEF_RANDOM,
-		use_fortune:	DEF_USE_FORTUNE,
+		Files:			DEF_FILES(),
+		Media_player:	DEF_MEDIA_PLAYER,
+		Player_options: DEF_PLAYER_OPTIONS(),
+		Random:			DEF_RANDOM,
+		Use_fortune:	DEF_USE_FORTUNE,
 	}
 	return options
 }
@@ -103,11 +103,11 @@ func parse_toml_file(options_file string, def_options Options) Options {
 	}
 	fmt.Println("OPTIONS")
 	fmt.Println("=======")
-	fmt.Println(options.files)
-	fmt.Println(options.media_player)
-	fmt.Println(options.player_options)
-	fmt.Println(options.random)
-	fmt.Println(options.use_fortune)
+	fmt.Println(options.Files)
+	fmt.Println(options.Media_player)
+	fmt.Println(options.Player_options)
+	fmt.Println(options.Random)
+	fmt.Println(options.Use_fortune)
 	fmt.Println("=======\n")
 	return options
 }
