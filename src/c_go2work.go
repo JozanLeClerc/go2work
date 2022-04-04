@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/c_go2work.go
- * Fri Apr  1 21:07:42 CEST 2022
+ * Mon Apr  4 17:06:21 CEST 2022
  * Joe
  *
  * The main.
