@@ -85,9 +85,14 @@ func find_options_file() string {
 	}
 	dir, err := os.UserHomeDir()
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
+	} else {
+		file_path = dir + "/.config/" + OPTIONS_FILE
+		if check_file_exists(file_path) == true {
+			return file_path
+		}
 	}
-	file_path = dir + "/.config/" + OPTIONS_FILE
+	file_path = "/usr/local/share/" + OPTIONS_FILE
 	if check_file_exists(file_path) == true {
 		return file_path
 	}
