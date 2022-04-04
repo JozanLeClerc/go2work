@@ -42,10 +42,10 @@ MKDIR		 = mkdir -p
 RMDIR		 = rmdir
 RM			 = rm -rf
 
-deps:
-	go get github.com/BurntSushi/toml@latest
+# deps:
 
 build:
+	go get github.com/BurntSushi/toml@latest
 	go build -o ${TARGET} ${SRCS}
 
 clean:

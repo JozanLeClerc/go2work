@@ -70,7 +70,7 @@ func init_def_options() Options {
 		Media_player:	DEF_MEDIA_PLAYER,
 		Player_options: DEF_PLAYER_OPTIONS(),
 		Random:			DEF_RANDOM,
-		Use_fortune:	DEF_USE_FORTUNE,
+		Fortune:		DEF_FORTUNE,
 	}
 	return options
 }
@@ -107,7 +107,7 @@ func parse_toml_file(options_file string, def_options Options) Options {
 	fmt.Println(options.Media_player)
 	fmt.Println(options.Player_options)
 	fmt.Println(options.Random)
-	fmt.Println(options.Use_fortune)
+	fmt.Println(options.Fortune)
 	fmt.Println("=======\n")
 	return options
 }

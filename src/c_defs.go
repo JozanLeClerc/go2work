@@ -58,7 +58,7 @@ const (
 	OPTIONS_FILE		= PROGNAME + "/" + PROGNAME + ".toml"
 	DEF_MEDIA_PLAYER	= "mpv"
 	DEF_RANDOM			= false
-	DEF_USE_FORTUNE		= true
+	DEF_FORTUNE			= true
 )
 
 func DEF_FILES() []string {
@@ -80,5 +80,5 @@ type Options struct {
 	Media_player	string
 	Player_options	[]string
 	Random			bool
-	Use_fortune		bool
+	Fortune			bool
 }
