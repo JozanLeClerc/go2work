@@ -11,7 +11,7 @@
 # ========================
 #
 # go2work: Makefile
-# Mon Apr  4 18:03:35 CEST 2022
+# Mon Apr  4 18:29:15 CEST 2022
 # Joe
 #
 # GNU Makefile
@@ -42,7 +42,7 @@ MAN			:= $(addsuffix .1, ${TARGET})
 
 MKDIR		:= mkdir -p
 RMDIR		:= rmdir
-RM			:= rm -rf
+RM			:= rm -Rf
 GZIP		:= gzip
 GUNZIP		:= gunzip
 INSTALL		:= install
@@ -57,29 +57,31 @@ ${TARGET}: deps
 
 install-bin: ${TARGET}
 	${MKDIR} ${DESTDIR}bin
-	${INSTALL} -m0555 ${TARGET} ${DESTDIR}bin/${TARGET}
+	${INSTALL} -m0555 ${TARGET} ${DESTDIR}bin
 
 install-data:
 	${MKDIR} ${DESTDIR}share/${TARGET}
-	${INSTALL} -m0644 ${DATA_DIR}ring01.wav ${DESTDIR}share/${TARGET}/ring01.wav
-	${INSTALL} -m0644 ${DATA_DIR}ring02.wav ${DESTDIR}share/${TARGET}/ring02.wav
+	${INSTALL} -m0644 ${DATA_DIR}ring01.wav ${DESTDIR}share/${TARGET}
+	${INSTALL} -m0644 ${DATA_DIR}ring02.wav ${DESTDIR}share/${TARGET}
 
 install-doc:
 	${MKDIR} ${DESTDIR}man/man1
 	${GZIP} ${MAN_DIR}${MAN}
-	${INSTALL} -m0444 ${MAN_DIR}${MAN}.gz ${DESTDIR}man/man1/${MAN}.gz
+	${INSTALL} -m0444 ${MAN_DIR}${MAN}.gz ${DESTDIR}man/man1
 	${GUNZIP} ${MAN_DIR}${MAN}
 
-install: install-bin install-doc
-	false
+install: install-bin install-data install-doc
 
-# ifeq(${OS} == "FreeBSD")
+uninstall:
+	${RM} ${DESTDIR}bin/${TARGET}
+	${RM} ${DESTDIR}share/${TARGET}
+	${RM} ${DESTDIR}man/man1/${MAN}.gz
 
 clean:
 	go clean
 	${RM} ${TARGET}
 
-.PHONY:	deps build install clean
+.PHONY:	deps build install-bin install-data install-doc install uninstall clean
 
 # File prefixes info
 # ------------------
