@@ -101,13 +101,5 @@ func parse_toml_file(options_file string, def_options Options) Options {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("OPTIONS")
-	fmt.Println("=======")
-	fmt.Println(options.Files)
-	fmt.Println(options.Media_player)
-	fmt.Println(options.Player_options)
-	fmt.Println(options.Random)
-	fmt.Println(options.Fortune)
-	fmt.Println("=======\n")
 	return options
 }
