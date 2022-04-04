@@ -64,7 +64,6 @@ const (
 func DEF_FILES() []string {
 	return []string{
 		"/usr/local/share/go2work/ring01.wav",
-		"/usr/local/share/go2work/ring02.wav",
 	}
 }
 

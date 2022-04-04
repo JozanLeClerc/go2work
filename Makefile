@@ -11,7 +11,7 @@
 # ========================
 #
 # go2work: Makefile
-# Mon Apr  4 18:29:15 CEST 2022
+# Mon Apr  4 18:43:18 CEST 2022
 # Joe
 #
 # GNU Makefile
@@ -42,7 +42,8 @@ MAN			:= $(addsuffix .1, ${TARGET})
 
 MKDIR		:= mkdir -p
 RMDIR		:= rmdir
-RM			:= rm -Rf
+RM			:= rm -f
+RMDIR		:= rmdir
 GZIP		:= gzip
 GUNZIP		:= gunzip
 INSTALL		:= install
@@ -63,6 +64,10 @@ install-data:
 	${MKDIR} ${DESTDIR}share/${TARGET}
 	${INSTALL} -m0644 ${DATA_DIR}ring01.wav ${DESTDIR}share/${TARGET}
 	${INSTALL} -m0644 ${DATA_DIR}ring02.wav ${DESTDIR}share/${TARGET}
+	${INSTALL} -m0644 ${DATA_DIR}${TARGET}.toml.sample ${DESTDIR}share/${TARGET}
+	${INSTALL} -m0644 LICENSE ${DESTDIR}share/${TARGET}
+	${INSTALL} -m0644 README ${DESTDIR}share/${TARGET}
+	${INSTALL} -m0644 README.org ${DESTDIR}share/${TARGET}
 
 install-doc:
 	${MKDIR} ${DESTDIR}man/man1
@@ -74,7 +79,13 @@ install: install-bin install-data install-doc
 
 uninstall:
 	${RM} ${DESTDIR}bin/${TARGET}
-	${RM} ${DESTDIR}share/${TARGET}
+	${RM} ${DESTDIR}share/${TARGET}/ring01.wav
+	${RM} ${DESTDIR}share/${TARGET}/ring02.wav
+	${RM} ${DESTDIR}share/${TARGET}/${TARGET}.toml.sample
+	${RM} ${DESTDIR}share/${TARGET}/LICENSE
+	${RM} ${DESTDIR}share/${TARGET}/README
+	${RM} ${DESTDIR}share/${TARGET}/README.org
+	${RMDIR} ${DESTDIR}share/${TARGET}
 	${RM} ${DESTDIR}man/man1/${MAN}.gz
 
 clean:

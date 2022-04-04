@@ -1,0 +1,22 @@
+# Audio files to be played. There can be several, in that case
+# only the first one is being played unless the 'random' option
+# is set to 'true'
+files = [
+	'/usr/local/share/go2work/ring01.wav',
+	'/usr/local/share/go2work/ring02.wav',
+]
+# The program used to play the music files
+# Default: 'mpv'
+media_player = 'mpv'
+# Command-line options to be passed to the program
+# Default: [ '--no-video', '--loop' ]
+player_options = [
+	'--no-video',
+	'--loop',
+]
+# Choose a random audio file in the list
+# Default: false
+random = false
+# Display a cool fortune message
+# Default: true
+fortune = true
