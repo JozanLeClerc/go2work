@@ -1,0 +1,129 @@
+.\" ========================
+.\" =====    ===============
+.\" ======  ================
+.\" ======  ================
+.\" ======  ====   ====   ==
+.\" ======  ===     ==  =  =
+.\" ======  ===  =  ==     =
+.\" =  ===  ===  =  ==  ====
+.\" =  ===  ===  =  ==  =  =
+.\" ==     =====   ====   ==
+.\" ========================
+.\"
+.\" SPDX-License-Identifier: BSD-3-Clause
+.\"
+.\" Copyright (c) 2022 Joe
+.\" All rights reserved.
+.\"
+.\" Redistribution and use in source and binary forms, with or without
+.\" modification, are permitted provided that the following conditions are met:
+.\" 1. Redistributions of source code must retain the above copyright
+.\"    notice, this list of conditions and the following disclaimer.
+.\" 2. Redistributions in binary form must reproduce the above copyright
+.\"    notice, this list of conditions and the following disclaimer in the
+.\"    documentation and/or other materials provided with the distribution.
+.\" 3. Neither the name of the organization nor the
+.\"    names of its contributors may be used to endorse or promote products
+.\"    derived from this software without specific prior written permission.
+.\"
+.\" THIS SOFTWARE IS PROVIDED BY JOE ''AS IS'' AND ANY
+.\" EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+.\" WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+.\" DISCLAIMED. IN NO EVENT SHALL JOE BE LIABLE FOR ANY
+.\" DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+.\" (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+.\" LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+.\" ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+.\" (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+.\" THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+.\"
+.\" go2work: man/go2work.1
+.\" Mon Apr  4 22:54:59 CEST 2022
+.\" Joe
+.\"
+.\" Manpage for go2work
+.\" Contact bousset.rudy@gmail.com to correct errors and typos
+.\"
+.de Text
+.nop \)\\$*
+..
+.
+.
+.TH go2work 1 "04 April 2022" "go2work 1.0.0"
+.
+.
+.SH NAME
+.B go2work
+\- cli alarm clock
+.
+.
+.SH SYNOPSIS
+.SY go2work
+.RB [ \-hHtv ]
+.I time
+.YS
+.
+.
+.SH DESCRIPTION
+.PP
+The
+.B go2work
+program alows you to set an alarm clock in the next
+24 hours. The given
+.I time
+must be in 24 hours format. When the time has come, a configurable audio file
+will be played by a configurable program.
+.SH OPTIONS
+.TP
+.B \-h
+Print brief usage information to standard output and exit.
+.TP
+.B \-H
+Print the real usage information to standard output and exit.
+.TP
+.B \-t
+Run a test alarm in 3 seconds into the future. This option is recommanded to
+verify if the given configurations is correct.
+.TP
+.B \-v
+Print version information to the standard output and exit.
+.SH FILES
+These are the base directories
+.B go2work
+searches for configuration files in descending order of imortance:
+.PP
+.RS 4
+$XDG_CONFIG_HOME/go2work/go2work.toml
+.RE
+.PP
+.RS 4
+$HOME/.config/go2work/go2work.toml
+.RE
+.PP
+.RS 4
+/usr/local/etc/go2work/go2work.toml
+.RE
+.PP
+When none of these are found,
+.B go2work
+will fall back to default settings. Default ringtones, LICENSE and README files
+are located in this directory:
+.PP
+.RS 4
+/usr/local/share/go2work
+.RE
+.SH BUG REPORT
+Please note that
+.B go2work
+was tested only on FreeBSD and Linux at the moment. macOS is not supported
+but should work just fine. You can report any bug at
+.I bousset.rudy@gmail.com
+or on GitHub at
+.IR https://github.com/JozanLeClerc/go2work/issues .
+.
+.SH AUTHORS
+Joe <bousset.rudy@gmail.com>
+.SH SEE ALSO
+.IR mpv (1),
+.IR fortune (1)
+.\" vim: set filetype=groff:
