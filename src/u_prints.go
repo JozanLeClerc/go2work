@@ -93,7 +93,7 @@ func print_time_left(curr_t [3]byte, dest_t [3]byte) {
 
 func print_help() {
 	fmt.Println(`Usage:
-  go2work [option / time]
+  go2work [options] time
 
 Options:
   -h, --help         show this help menu
