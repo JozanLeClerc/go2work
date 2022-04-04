@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/c_go2work.go
- * Mon Apr  4 17:25:53 CEST 2022
+ * Mon Apr  4 19:31:34 CEST 2022
  * Joe
  *
  * The main.
@@ -62,7 +62,8 @@ func main() {
 	log.SetPrefix(PROGNAME + ": ")
 	log.SetFlags(0)
 	if len(os.Args[0:]) == 1 {
-		log.Fatal("no arguments")
+		print_help()
+		os.Exit(1)
 		return
 	}
 	switch os.Args[1] {

@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/u_prints.go
- * Mon Apr  4 17:25:43 CEST 2022
+ * Mon Apr  4 19:27:33 CEST 2022
  * Joe
  *
  * Stuff to print
