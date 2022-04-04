@@ -49,7 +49,7 @@ package main
 
 const (
 	PROGNAME			= "go2work"
-	VERSION				= "0.1.0"
+	VERSION				= "1.0.0"
 	HOURS				= 0
 	MINS				= 1
 	SECS				= 2
@@ -63,8 +63,8 @@ const (
 
 func DEF_FILES() []string {
 	return []string{
-		"/usr/home/jozan/mu/progressive/progressive_black_metal/deathspell_omega/2010_paracletus/02_wings_of_predation.flac",
-		"/usr/home/jozan/docs/dr2_art/sounds/sfx/broking_cursed_object.wav",
+		"/usr/local/share/go2work/ring01.wav",
+		"/usr/local/share/go2work/ring02.wav",
 	}
 }
 
