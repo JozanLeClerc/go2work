@@ -42,20 +42,17 @@ MKDIR		 = mkdir -p
 RMDIR		 = rmdir
 RM			 = rm -rf
 
-# deps:
-
-build:
+deps:
 	go get github.com/BurntSushi/toml@latest
+
+build: deps
 	go build -o ${TARGET} ${SRCS}
 
 clean:
 	go clean
 	${RM} ${TARGET}
 
-run:
-	go run ${SRCS}
-
-.PHONY:	build clean run deps
+.PHONY:	build clean deps
 
 # File prefixes info
 # ------------------
