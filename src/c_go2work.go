@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/c_go2work.go
- * Mon Apr  4 17:06:21 CEST 2022
+ * Mon Apr  4 17:25:53 CEST 2022
  * Joe
  *
  * The main.
@@ -50,9 +50,9 @@ package main
 import (
 	"log"
 	"os"
-	"time"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func main() {
@@ -103,6 +103,11 @@ func main() {
 	}
 	curr_t = get_time()
 	print_time_left(curr_t, dest_t)
+	main_loop(dest_t, options)
+}
+
+func main_loop(dest_t [3]byte, options Options) {
+	var curr_t [3]byte
 	ticker := time.NewTicker(INTERVAL * time.Millisecond)
 	quit := make(chan struct{})
 	for {

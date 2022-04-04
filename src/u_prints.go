@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/u_prints.go
- * Fri Apr  1 18:49:41 CEST 2022
+ * Mon Apr  4 17:25:43 CEST 2022
  * Joe
  *
  * Stuff to print
@@ -49,6 +49,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 )
 
 func print_time(t [3]byte) {
@@ -110,12 +111,18 @@ func print_version() {
 }
 
 func print_fortune_not_found() {
-	fmt.Println("Beware, fortune is set on but was not found")
+	fmt.Print("\n\n")
+	log.Println("beware, fortune is set on but was not found")
 }
 
+func print_no_files() {
+	fmt.Print("\n\n")
+	log.Println("beware, no files selected! Using default ringtone")
+}
 func print_file_not_found(file string) {
-	fmt.Println("\n\nBeware, file \"" +
+	fmt.Print("\n\n")
+	log.Println("beware, file '" +
 		file +
-		"\" not found! Using default ringtone",
+		"' not found! Using default ringtone",
 	)
 }

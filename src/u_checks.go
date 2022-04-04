@@ -48,6 +48,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"os/exec"
 )
@@ -81,6 +82,9 @@ func check_time_format(time [3]byte) bool {
 }
 
 func check_file_exists(file string) bool {
+	if file == "" {
+		fmt.Println("empty")
+	}
 	_, err := os.Stat(file)
 	if os.IsNotExist(err) == true {
 		return false

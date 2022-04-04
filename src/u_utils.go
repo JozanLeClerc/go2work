@@ -89,6 +89,10 @@ func get_test_time() [3]byte {
 
 func choose_file(options Options) int {
 	file_id := len(options.Files)
+	if file_id == 0 {
+		print_no_files()
+		return -1
+	}
 	if options.Random == true && file_id > 1 {
 		rand.Seed(time.Now().UnixNano())
 		file_id = rand.Intn(file_id)
