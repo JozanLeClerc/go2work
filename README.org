@@ -66,7 +66,7 @@ When planning to wake up at 06:30 A.M. use:
 #+BEGIN_SRC shell
 go2work 06:30
 #+END_SRC
-or this will work as well.
+or this will work as well:
 #+BEGIN_SRC shell
 go2work 6:30
 #+END_SRC
@@ -79,11 +79,11 @@ you can format the time as:
 #+BEGIN_SRC shell
 go2work 10:00
 #+END_SRC
-or:
+or this is valid too:
 #+BEGIN_SRC shell
 go2work 10:
 #+END_SRC
-But
+However, this:
 #+BEGIN_SRC shell
 go2work 10
 #+END_SRC
