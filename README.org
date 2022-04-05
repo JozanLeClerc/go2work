@@ -1,7 +1,8 @@
 #+TITLE: go2work
 
 *go2work* is a small command-line program to help you get up in the morning
-so you can work. It is very inspired from
+so you can work. You can set custom ringtones and get a cool fortune too.
+It is very inspired from
 [[https://github.com/jahendrie/shalarm][shalarm]]. I made *go2work* originally to learn
 the Go programming language and also because ~shalarm~ didn't work out
 of the box on FreeBSD.
@@ -38,7 +39,7 @@ Here is the default configuration file path:
 ~/usr/local/etc/go2work/go2work.toml~
 
 It is recommanded to copy it right away to
-~/home/sleeper/.config/go2work/go2work.toml~.
+~/home/your_name/.config/go2work/go2work.toml~.
 *go2work* will search for configuration files in this order of importance:
 
 ~$XDG_CONFIG_HOME/go2work/go2work.toml~
