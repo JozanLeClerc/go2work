@@ -38,7 +38,7 @@
 .\" THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 .\"
 .\" go2work: man/go2work.1
-.\" Mon Apr  4 22:54:59 CEST 2022
+.\" Tue Apr  5 10:58:51 CEST 2022
 .\" Joe
 .\"
 .\" Manpage for go2work
@@ -75,39 +75,48 @@ must be in 24 hours format. When the time has come, a configurable audio file
 will be played by a configurable program.
 .SH OPTIONS
 .TP
-.B \-h
-Print brief usage information to standard output and exit.
+\fB\-h\fR, \fB\-\-help\fR
+Print brief usage informations to standard output and exit.
 .TP
-.B \-H
-Print the real usage information to standard output and exit.
+\fB\-H\fR, \fB\-\-real\-help\fR
+Print the real usage informations to standard output and exit.
 .TP
-.B \-t
-Run a test alarm in 3 seconds into the future. This option is recommanded to
-verify if the given configurations is correct.
+\fB\-t\fR, \fB\-\-test\fR
+Run a test alarm 3 seconds into the future. This option is recommanded to
+make sure that the given configuration is safe.
 .TP
-.B \-v
-Print version information to the standard output and exit.
+\fB\-v\fR, \fB\-\-version\fR
+Print version informations to the standard output and exit.
 .SH FILES
-These are the base directories
+These are the configuration files path
 .B go2work
-searches for configuration files in descending order of imortance:
+is looking for in descending order of imortance:
 .PP
-.RS 4
+.RS
 $XDG_CONFIG_HOME/go2work/go2work.toml
 .RE
 .PP
-.RS 4
+.RS
 $HOME/.config/go2work/go2work.toml
 .RE
 .PP
-.RS 4
+.RS
 /usr/local/etc/go2work/go2work.toml
 .RE
 .PP
 When none of these are found,
 .B go2work
-will fall back to default settings. Default ringtones, LICENSE and README files
-are located in this directory:
+will fall back to default settings. Unless the
+.B DESTDIR
+(default:
+.IR /usr/local )
+makefile variable wasn't changed upon building, default
+.I ringtones
+wav files,
+.I LICENSE
+and
+.I README
+can be found in this directory:
 .PP
 .RS 4
 /usr/local/share/go2work
