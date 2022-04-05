@@ -1,0 +1,36 @@
+#+TITLE: go2work
+
+*go2work* is a small command-line program to help you get up in the morning
+so you can work. It is very inspired from
+[shalarm][https://github.com/jahendrie/shalarm] made originally to learn
+the Go programming language and also because ~shalarm~ didn't work out
+of the box on FreeBSD.
+
+*go2work* has several options and is configurable though a configuration file.
+Refer to
+#+BEGIN_SRC shell
+man go2work
+#+END_SRC
+to get a list of all options.
+
+* Dependencies
+- Go
+- GNU Make
+
+* Installation
+You can get *go2work* through ~git~. The installation is straight forward:
+#+BEGIN_SRC shell
+git clone git://jozanofastora.xyz/jozan/go2work.git
+cd go2work
+make
+sudo make install clean
+#+END_SRC
+Note that on BSD systems you want to use ~gmake~ instead of ~make~:
+#+BEGIN_SRC shell
+gmake
+sudo gmake install clean
+#+END_SRC
+
+* Uninstall
+If you are unhappy with *go2work* because you don't like to work,
+navigate to the 

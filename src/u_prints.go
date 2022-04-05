@@ -58,6 +58,7 @@ func print_time(t [3]byte) {
 
 func print_time_left(curr_t [3]byte, dest_t [3]byte) {
 	var left_secs uint
+	curr_t = get_time()
 	curr_secs := time_to_seconds(curr_t)
 	dest_secs := time_to_seconds(dest_t)
 	if curr_secs <= dest_secs {
@@ -111,7 +112,6 @@ func print_version() {
 }
 
 func print_fortune_not_found() {
-	fmt.Print("\n\n")
 	log.Println("beware, fortune is set on but was not found")
 }
 

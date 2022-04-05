@@ -73,7 +73,7 @@ func exec_player(
 	var cmd *exec.Cmd
 	if show_fortune == true && has_rang == false {
 		fmt.Print("\n\n")
-		cmd = exec.Command("fortune", "-s")
+		cmd = exec.Command(FORTUNE_BIN, "-s")
 		var out bytes.Buffer
 		cmd.Stdout = &out
 		cmd.Run()

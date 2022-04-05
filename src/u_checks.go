@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/u_checks.go
- * Fri Apr  1 18:30:55 CEST 2022
+ * Tue Apr  5 11:13:23 CEST 2022
  * Joe
  *
  * Useful checks.
@@ -49,6 +49,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"os/exec"
 )
@@ -63,7 +64,7 @@ func check_media_player(media_player string) bool {
 }
 
 func check_fortune() bool {
-	cmd := exec.Command("command", "-v", "fortune")
+	cmd := exec.Command("command", "-v", FORTUNE_BIN)
 	err := cmd.Run()
 	if err != nil {
 		return false
@@ -90,4 +91,18 @@ func check_file_exists(file string) bool {
 		return false
 	}
 	return true
+}
+
+func first_checks(dest_t [3]byte, options Options) {
+	if check_time_format(dest_t) == false {
+		log.Fatal(LOG_FORMAT)
+		return
+	}
+	if check_media_player(options.Media_player) == false {
+		log.Fatal("media player (" + options.Media_player + ") not found")
+		return
+	}
+	if options.Fortune == true && check_fortune() == false {
+		print_fortune_not_found()
+	}
 }

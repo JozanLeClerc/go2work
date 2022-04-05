@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/c_go2work.go
- * Mon Apr  4 19:31:34 CEST 2022
+ * Tue Apr  5 11:11:13 CEST 2022
  * Joe
  *
  * The main.
@@ -61,7 +61,7 @@ func main() {
 	var options Options
 	log.SetPrefix(PROGNAME + ": ")
 	log.SetFlags(0)
-	if len(os.Args[0:]) == 1 {
+	if len(os.Args) == 1 {
 		print_help()
 		os.Exit(1)
 		return
@@ -90,17 +90,7 @@ func main() {
 		dest_t[SECS] = 0
 	}
 	options = parse_options()
-	if check_time_format(dest_t) == false {
-		log.Fatal(LOG_FORMAT)
-		return
-	}
-	if check_media_player(options.Media_player) == false {
-		log.Fatal("media player (" + options.Media_player + ") not found")
-		return
-	}
-	if options.Fortune == true && check_fortune() == false {
-		print_fortune_not_found()
-	}
+	first_checks(dest_t, options)
 	curr_t = get_time()
 	print_time_left(curr_t, dest_t)
 	main_loop(dest_t, options)
