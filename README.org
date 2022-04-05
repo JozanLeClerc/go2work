@@ -25,12 +25,10 @@ is straight forward:
 #+BEGIN_SRC shell
 git clone git://jozanofastora.xyz/jozan/go2work.git
 cd go2work
-make
 sudo make install clean
 #+END_SRC
 Note that on BSD systems you want to use ~gmake~ instead of ~make~:
 #+BEGIN_SRC shell
-gmake
 sudo gmake install clean
 #+END_SRC
 

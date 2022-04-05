@@ -4,14 +4,12 @@ go2work
 go2work is a small command-line program to help you get up in the morning
 so you can work. You can set custom ringtones and get a cool fortune too.
 It is very inspired from shalarm (https://github.com/jahendrie/shalarm).
-I made go2work originally to learn
-
-the Go programming language and also because shalarm didn't work out
-of the box on FreeBSD.
+I made go2work originally to learn the Go programming language and also
+because shalarm didn't work out of the box on FreeBSD.
 
 go2work has several options and is configurable though a configuration file.
 Refer to
-  $ man go2work
+    $ man go2work
 to get a list of all options.
 
 Dependencies
@@ -26,11 +24,9 @@ You can get go2work through git and build it from source. The installation
 is straight forward:
     $ git clone git://jozanofastora.xyz/jozan/go2work.git
     $ cd go2work
-    $ make
     $ sudo make install clean
 
 Note that on BSD systems you want to use gmake instead of make:
-    $ gmake
     $ sudo gmake install clean
 
 Configuration and usage
@@ -38,7 +34,7 @@ Configuration and usage
 Here is the default configuration file path:
     /usr/local/etc/go2work/go2work.toml
 
-It is recommanded to copy it right away to
+It is recommanded to copy it right away to:
     /home/your_name/.config/go2work/go2work.toml
 
 go2work will search for configuration files in this order of importance:
@@ -47,7 +43,6 @@ go2work will search for configuration files in this order of importance:
     /usr/local/etc/go2work/go2work.toml
 
 Here are some examples of usage.
-
 It is highly recommanded to test your configuration first, unless you
 intentionally plan on not waking up. To run a test, use:
     $ go2work -t
@@ -66,7 +61,7 @@ or this will work as well:
 But when planning on waking up at 06:30 P.M. use:
     $ go2work 18:30
 
-When minutes don't matter, for example setting the alarm at *10:00*,
+When minutes don't matter, for example setting the alarm at 10:00,
 you can format the time as:
     $ go2work 10:00
 
