@@ -66,7 +66,6 @@ install-data:
 	${INSTALL} -m0644 ${DATA_DIR}ring02.wav ${DESTDIR}share/${TARGET}
 	${INSTALL} -m0644 LICENSE ${DESTDIR}share/${TARGET}
 	${INSTALL} -m0644 README ${DESTDIR}share/${TARGET}
-	${INSTALL} -m0644 README.org ${DESTDIR}share/${TARGET}
 	${MKDIR} ${DESTDIR}etc/${TARGET}
 	${INSTALL} -m0644 ${DATA_DIR}${TARGET}.toml ${DESTDIR}etc/${TARGET}
 
@@ -84,7 +83,6 @@ uninstall:
 	${RM} ${DESTDIR}share/${TARGET}/ring02.wav
 	${RM} ${DESTDIR}share/${TARGET}/LICENSE
 	${RM} ${DESTDIR}share/${TARGET}/README
-	${RM} ${DESTDIR}share/${TARGET}/README.org
 	${RMDIR} ${DESTDIR}share/${TARGET}
 	${RM} ${DESTDIR}etc/${TARGET}/${TARGET}.toml
 	${RMDIR} ${DESTDIR}etc/${TARGET}

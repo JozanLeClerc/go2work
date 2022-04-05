@@ -1,0 +1,103 @@
+go2work
+-------
+
+go2work is a small command-line program to help you get up in the morning
+so you can work. You can set custom ringtones and get a cool fortune too.
+It is very inspired from shalarm (https://github.com/jahendrie/shalarm).
+I made go2work originally to learn
+
+the Go programming language and also because shalarm didn't work out
+of the box on FreeBSD.
+
+go2work has several options and is configurable though a configuration file.
+Refer to
+  $ man go2work
+to get a list of all options.
+
+Dependencies
+------------
+- Go
+- GNU Make
+- fortune (optional)
+
+Installation
+------------
+You can get go2work through git and build it from source. The installation
+is straight forward:
+    $ git clone git://jozanofastora.xyz/jozan/go2work.git
+    $ cd go2work
+    $ make
+    $ sudo make install clean
+
+Note that on BSD systems you want to use gmake instead of make:
+    $ gmake
+    $ sudo gmake install clean
+
+Configuration and usage
+-----------------------
+Here is the default configuration file path:
+    /usr/local/etc/go2work/go2work.toml
+
+It is recommanded to copy it right away to
+    /home/your_name/.config/go2work/go2work.toml
+
+go2work will search for configuration files in this order of importance:
+    $XDG_CONFIG_HOME/go2work/go2work.toml
+    $HOME/.config/go2work/go2work.toml
+    /usr/local/etc/go2work/go2work.toml
+
+Here are some examples of usage.
+
+It is highly recommanded to test your configuration first, unless you
+intentionally plan on not waking up. To run a test, use:
+    $ go2work -t
+
+To stop the alarm, use Ctrl + C to abort the program. If your ringtone is
+done playing, it will play again until you wake the fuck up and insert a
+Ctrl + C event into go2work.
+
+Given time must always be in 24 hours format because it just is better than 12.
+When planning to wake up at 06:30 A.M. use:
+    $ go2work 06:30
+
+or this will work as well:
+    $ go2work 6:30
+
+But when planning on waking up at 06:30 P.M. use:
+    $ go2work 18:30
+
+When minutes don't matter, for example setting the alarm at *10:00*,
+you can format the time as:
+    $ go2work 10:00
+
+or this is valid too:
+    $ go2work 10:
+
+However, this will give you an error:
+    $ go2work 10
+
+Time must be formatted somewhat properly.
+
+Remaining time before the alarm rings is being displayed to confirm
+that go2work is engaged.
+
+Uninstall
+---------
+If you are unhappy with go2work because you don't like to work,
+navigate to the go2work/ directory and run the following command:
+    $ sudo make uninstall
+
+Or on BSD systems with gmake:
+    $ sudo gmake uninstall
+
+End note
+--------
+Go is fun to learn and play with. I might continue developping go2work in
+the future by adding a full TUI and more options but this is uncertain.
+
+Please note that go2work was tested only on FreeBSD and Linux at the
+moment. macOS is not supported but should work just fine, Windows probably won't
+work at all. You can report any bug at bousset.rudy@gmail.com or on GitHub at
+https://github.com/JozanLeClerc/go2work/issues.
+
+Thanks for checking go2work.

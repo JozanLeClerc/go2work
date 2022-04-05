@@ -39,7 +39,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * go2work: src/p_options.go
- * Mon Apr  4 19:39:00 CEST 2022
+ * Tue Apr  5 12:24:13 CEST 2022
  * Joe
  *
  * Options parsing.
@@ -92,7 +92,7 @@ func find_options_file() string {
 			return file_path
 		}
 	}
-	file_path = "/usr/local/share/" + OPTIONS_FILE
+	file_path = "/usr/local/etc/" + OPTIONS_FILE
 	if check_file_exists(file_path) == true {
 		return file_path
 	}

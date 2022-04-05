@@ -84,11 +84,11 @@ or this is valid too:
 #+BEGIN_SRC shell
 go2work 10:
 #+END_SRC
-However, this:
+However, this will give you an error:
 #+BEGIN_SRC shell
 go2work 10
 #+END_SRC
-will give you an error. Time must be formatted somewhat properly.
+Time must be formatted somewhat properly.
 
 Remaining time before the alarm rings is being displayed to confirm
 that *go2work* is engaged.
@@ -114,4 +114,4 @@ work at all. You can report any bug at /bousset.rudy@gmail.com/
 or on GitHub at
 [[https://github.com/JozanLeClerc/go2work/issues][github.com/JozanLeClerc/go2work/issues]].
 
-Thanks for checking *go2work*
+Thanks for checking *go2work*.
