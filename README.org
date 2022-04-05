@@ -2,7 +2,7 @@
 
 *go2work* is a small command-line program to help you get up in the morning
 so you can work. It is very inspired from
-[shalarm][https://github.com/jahendrie/shalarm] made originally to learn
+[[https://github.com/jahendrie/shalarm][shalarm]] and made originally to learn
 the Go programming language and also because ~shalarm~ didn't work out
 of the box on FreeBSD.
 
