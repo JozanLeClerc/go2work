@@ -62,7 +62,7 @@ done playing, it will play again until you wake the fuck up and insert a
 ~Ctrl + C~ event into *go2work*.
 
 Given time must always be in 24 hours format because it just is better than 12.
-When planning to wake up at 06:30 A.M. use:
+When planning to wake up at *06:30 A.M.* use:
 #+BEGIN_SRC shell
 go2work 06:30
 #+END_SRC
@@ -70,12 +70,12 @@ or this will work as well:
 #+BEGIN_SRC shell
 go2work 6:30
 #+END_SRC
-But when planning on waking up at 06:30 P.M. use:
+But when planning on waking up at *06:30 P.M.* use:
 #+BEGIN_SRC shell
 go2work 18:30
 #+END_SRC
 
-When minutes don't matter, for example setting the alarm at 10:00,
+When minutes don't matter, for example setting the alarm at *10:00*,
 you can format the time as:
 #+BEGIN_SRC shell
 go2work 10:00
