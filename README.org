@@ -2,7 +2,7 @@
 
 *go2work* is a small command-line program to help you get up in the morning
 so you can work. It is very inspired from
-[[https://github.com/jahendrie/shalarm][shalarm]] and made originally to learn
+[[https://github.com/jahendrie/shalarm][shalarm]]. I made *go2work* originally to learn
 the Go programming language and also because ~shalarm~ didn't work out
 of the box on FreeBSD.
 
@@ -31,6 +31,50 @@ gmake
 sudo gmake install clean
 #+END_SRC
 
+* Configuration and usage
+Here is the default configuration file path:
+
+~/usr/local/etc/go2work/go2work.toml~
+
+It is recommanded to copy it right away to ~~/.config/go2work/go2work.toml~.
+*go2work* will search for configuration files in this order of importance:
+
+~$XDG_CONFIG_HOME/go2work/go2work.toml~
+
+~$HOME/.config/go2work/go2work.toml~
+
+~/usr/local/etc/go2work/go2work.toml~
+
+It is highly recommanded to test your configuration first.
+Here are some examples of usage.
+Given time must always be in 24 hours format. When planning to wake up at 06:30 A.M use:
+#+BEGIN_SRC shell
+go2work 06:30
+#+END_SRC
+or this will work as well.
+#+BEGIN_SRC shell
+go2work 6:30
+#+END_SRC
+
 * Uninstall
 If you are unhappy with *go2work* because you don't like to work,
-navigate to the 
+navigate to the ~go2work/~ directory and run the following command:
+#+BEGIN_SRC shell
+sudo make uninstall
+#+END_SRC
+Or on BSD systems with ~gmake~:
+#+BEGIN_SRC shell
+sudo gmake uninstall
+#+END_SRC
+
+* End note
+Go is fun to learn and play with. I might continue developping *go2work* in
+the future by adding a full TUI and more options but this is uncertain.
+
+Please note that *go2work* was tested only on FreeBSD and Linux at the
+moment. macOS is not supported but should work just fine, Windows probably won't
+work at all. You can report any bug at /bousset.rudy@gmail.com/
+or on GitHub at
+[[https://github.com/JozanLeClerc/go2work/issues][github.com/JozanLeClerc/go2work/issues]].
+
+Thanks for checking *go2work*
