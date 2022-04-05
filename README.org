@@ -20,7 +20,8 @@ to get a list of all options.
 - fortune (optional)
 
 * Installation
-You can get *go2work* through ~git~. The installation is straight forward:
+You can get *go2work* through ~git~ and build it from source. The installation
+is straight forward:
 #+BEGIN_SRC shell
 git clone git://jozanofastora.xyz/jozan/go2work.git
 cd go2work
@@ -49,14 +50,19 @@ It is recommanded to copy it right away to
 ~/usr/local/etc/go2work/go2work.toml~
 
 Here are some examples of usage.
-It is highly recommanded to test your configuration first, unless you intentionally
-plan on not waking up. To run a test, use:
+
+It is highly recommanded to test your configuration first, unless you
+intentionally plan on not waking up. To run a test, use:
 #+BEGIN_SRC shell
 go2work -t
 #+END_SRC
 
-Given time must always be in 24 hours format. When planning to wake up
-at 06:30 A.M use:
+To stop the alarm, use ~Ctrl + C~ to abort the program. If your ringtone
+has fully played and is over, it will run again until you wake the fuck up
+and insert a ~Ctrl + C~ event into *go2work*.
+
+Given time must always be in 24 hours format because it just is better then 12.
+When planning to wake up at 06:30 A.M. use:
 #+BEGIN_SRC shell
 go2work 06:30
 #+END_SRC
@@ -64,6 +70,27 @@ or this will work as well.
 #+BEGIN_SRC shell
 go2work 6:30
 #+END_SRC
+But when planning on waking up at 06:30 P.M. use:
+#+BEGIN_SRC shell
+go2work 18:30
+#+END_SRC
+When minutes don't matter, for example setting the alarm at 10:00,
+you can format the time as:
+#+BEGIN_SRC shell
+go2work 10:00
+#+END_SRC
+or:
+#+BEGIN_SRC shell
+go2work 10:
+#+END_SRC
+But
+#+BEGIN_SRC shell
+go2work 10
+#+END_SRC
+will give you an error. Time must be formatted somewhat properly.
+
+Remaining time before the alarm rings is being displayed to confirm
+that *go2work* is engaged.
 
 * Uninstall
 If you are unhappy with *go2work* because you don't like to work,
