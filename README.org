@@ -16,6 +16,7 @@ to get a list of all options.
 * Dependencies
 - Go
 - GNU Make
+- fortune (optional)
 
 * Installation
 You can get *go2work* through ~git~. The installation is straight forward:
@@ -36,7 +37,8 @@ Here is the default configuration file path:
 
 ~/usr/local/etc/go2work/go2work.toml~
 
-It is recommanded to copy it right away to ~~~/.config/go2work/go2work.toml~.
+It is recommanded to copy it right away to
+~/home/sleeper/.config/go2work/go2work.toml~.
 *go2work* will search for configuration files in this order of importance:
 
 ~$XDG_CONFIG_HOME/go2work/go2work.toml~
@@ -45,9 +47,15 @@ It is recommanded to copy it right away to ~~~/.config/go2work/go2work.toml~.
 
 ~/usr/local/etc/go2work/go2work.toml~
 
-It is highly recommanded to test your configuration first.
 Here are some examples of usage.
-Given time must always be in 24 hours format. When planning to wake up at 06:30 A.M use:
+It is highly recommanded to test your configuration first, unless you intentionally
+plan on not waking up. To run a test, use:
+#+BEGIN_SRC shell
+go2work -t
+#+END_SRC
+
+Given time must always be in 24 hours format. When planning to wake up
+at 06:30 A.M use:
 #+BEGIN_SRC shell
 go2work 06:30
 #+END_SRC
